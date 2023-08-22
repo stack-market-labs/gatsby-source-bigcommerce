@@ -1,42 +1,115 @@
 {
-  "private": true,
-  "name": "creating-source-plugin-tutorial",
-  "version": "0.1.0",
-  "description": "Companion project for the Creating a Source Plugin Gatsby tutorial",
-  "workspaces": [
-    "api",
-    "site",
-    "plugin"
-  ],
-  "scripts": {
-    "develop:api": "yarn workspace api develop",
-    "develop:plugin": "yarn workspace plugin develop",
-    "develop:site": "yarn workspace site develop",
-    "develop:deps": "npm-run-all -l -p 'develop:api' 'develop:plugin'",
-    "build:api": "yarn workspace api build",
-    "build:plugin": "yarn workspace plugin build",
-    "build:site": "yarn workspace site build",
-    "build": "npm-run-all -s 'build:plugin' 'build:api' 'serve:api' 'build:site'",
-    "serve:api": "yarn workspace api serve",
-    "serve:site": "yarn workspace site serve",
-    "start:api": "npm-run-all build:api serve:api",
-    "lint": "eslint . --ext .ts,.tsx,.js",
-    "lint:fix": "yarn lint --fix",
-    "test": "yarn workspace plugin test",
-    "clean": "npm-run-all -p 'clean:*'",
-    "clean:api": "yarn workspace api clean",
-    "clean:plugin": "yarn workspace plugin clean",
-    "clean:site": "yarn workspace site clean"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
-    "eslint": "^8.32.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.3"
-  },
-  "packageManager": "yarn@3.3.1"
+	"name": "gatsby-source-bigcommerce-v2",
+	"version": "1.0.0",
+	"description": "This unofficial source plugin makes BigCommerce API data available in GatsbyJS sites. Currently in active development.",
+	"scripts": {
+		"build": "babel ./src/ --out-dir ./ --source-maps",
+		"commit": "git-cz",
+		"watch": "babel ./src/ --out-dir ./ --source-maps --watch",
+		"lint:eslint": "eslint \"./src/**/*.js\" --quiet --fix --color --ignore-path .gitignore",
+		"lint:prettier": "prettier \"./src/**/*.js\" --write --ignore-path .gitignore",
+		"lint": "yarn lint:eslint && yarn lint:prettier",
+		"test": "yarn lint",
+		"prepare": "cross-env NODE_ENV=production yarn build",
+		"validate": "yarn lint",
+		"ci:validate": "rm -rf node_modules && yarn install --frozen-lockfile && yarn validate",
+		"prepublishOnly": "yarn ci:validate && yarn build"
+	},
+	"homepage": "https://github.com/guyromellemagayano/gatsby-source-bigcommerce/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/guyromellemagayano/gatsby-source-bigcommerce.git"
+	},
+	"keywords": [
+		"api",
+		"storefront",
+		"bigcommerce",
+		"gatsby-plugin",
+		"gatsby-source-bigcommerce-v2",
+		"gatsby",
+		"plugin",
+		"source"
+	],
+	"author": "Guy Romelle Magayano <hello@guyromellemagayano.dev> (https://guyromellemagayano.dev)",
+	"contributors": [
+		{
+			"name": "Grant Glidewell",
+			"url": "https://www.blogwell.io/"
+		},
+		{
+			"name": "Eric Boggs",
+			"email": "eric@mlemedia.com",
+			"url": "http://etboggs.com"
+		},
+		{
+			"name": "Max Jerry",
+			"email": "maxjerry0107@gmail.com",
+			"url": "https://www.maxjerry.com/"
+		}
+	],
+	"license": "MIT",
+	"main": "index.js",
+	"dependencies": {
+		"axios": "^1.2.4",
+		"gatsby-source-filesystem": "^5.5.0",
+		"lodash": "^4.17.21"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.19.3",
+		"@babel/core": "^7.20.12",
+		"@babel/eslint-parser": "^7.19.1",
+		"@babel/plugin-transform-runtime": "^7.19.6",
+		"@babel/runtime": "^7.20.13",
+		"@commitlint/cli": "^17.4.2",
+		"@commitlint/config-conventional": "^17.4.2",
+		"babel-preset-gatsby-package": "^3.5.0",
+		"babel-preset-minify": "^0.5.2",
+		"commitizen": "^4.3.0",
+		"cross-env": "^7.0.3",
+		"cz-conventional-changelog": "3.3.0",
+		"eslint": "^8.32.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-babel": "^5.3.1",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.32.1",
+		"gatsby-core-utils": "^4.5.0",
+		"husky": "^8.0.3",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.8.3",
+		"react": "^18.2.0"
+	},
+	"peerDependencies": {
+		"gatsby": "^5.0.0-next",
+		"gatsby-plugin-image": "^3.0.0-next",
+		"gatsby-plugin-sharp": "^5.0.0-next",
+		"sharp": "^0.30.1"
+	},
+	"bugs": {
+		"url": "https://github.com/guyromellemagayano/gatsby-source-bigcommerce/issues"
+	},
+	"directories": {
+		"src": "src"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn lint-staged --allow-empty",
+			"prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+			"commit": "cz",
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+		}
+	},
+	"lint-staged": {
+		"**/*.{js,jsx,md,mdx,json}": [
+			"yarn lint",
+			"git add"
+		]
+	},
+	"engines": {
+		"node": ">=16.15.1"
+	}
 }
