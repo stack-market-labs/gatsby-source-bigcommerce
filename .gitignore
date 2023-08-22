@@ -47,6 +47,8 @@ gatsby-*.js
 gatsby-*.js.map
 utils/*.js
 utils/*.js.map
+libs/*.js
+libs/*.js.map
 constants/*.js
 constants/*.js.map
 
