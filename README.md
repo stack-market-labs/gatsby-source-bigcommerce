@@ -1,21 +1,17 @@
-# gatsby-source-bigcommerce-v2
+# @stackmarketlabs/gatsby-source-bigcommerce
 
 This unofficial source plugin makes BigCommerce API data available in GatsbyJS sites. Currently in active development.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![GitHub](https://img.shields.io/github/license/guyromellemagayano/gatsby-source-bigcommerce)
+![GitHub](https://img.shields.io/github/license/stack-market-labs/gatsby-source-bigcommerce)
 ![npm](https://img.shields.io/npm/dt/gatsby-source-bigcommerce)
-![GitHub issues](https://img.shields.io/github/issues/guyromellemagayano/gatsby-source-bigcommerce)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/guyromellemagayano/gatsby-source-bigcommerce)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/guyromellemagayano/gatsby-source-bigcommerce)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/guyromellemagayano/gatsby-source-bigcommerce)
-![GitHub contributors](https://img.shields.io/github/contributors/guyromellemagayano/gatsby-source-bigcommerce)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/guyromellemagayano/gatsby-source-bigcommerce)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/guyromellemagayano/gatsby-source-bigcommerce)
-
-## DEPRECATION NOTICE
-
-This plugin [@epicdesignlabs/gatsby-source-bigcommerce](https://www.npmjs.com/package/@epicdesignlabs/gatsby-source-bigcommerce) is no longer maintained and now officially deprecated. Please use this unofficial, but currently maintained [gatsby-source-bigcommerce-v2](https://www.npmjs.com/package/gatsby-source-bigcommerce-v2) plugin instead as Im still currently maintaining this plugin.
+![GitHub issues](https://img.shields.io/github/issues/stack-market-labs/gatsby-source-bigcommerce)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/stack-market-labs/gatsby-source-bigcommerce)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/stack-market-labs/gatsby-source-bigcommerce)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/stack-market-labs/gatsby-source-bigcommerce)
+![GitHub contributors](https://img.shields.io/github/contributors/stack-market-labs/gatsby-source-bigcommerce)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/stack-market-labs/gatsby-source-bigcommerce)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/stack-market-labs/gatsby-source-bigcommerce)
 
 ## Features
 
@@ -36,13 +32,13 @@ Provide support for the following features:
 For `npm`:
 
 ```console
-npm install gatsby-source-bigcommerce-v2
+npm install @stackmarketlabs/gatsby-source-bigcommerce
 ```
 
 For `yarn`:
 
 ```console
-yarn add gatsby-source-bigcommerce-v2
+yarn add @stackmarketlabs/gatsby-source-bigcommerce
 ```
 
 Setup this plugin in `gatsby-config.js` as follows **_(\*required fields)_**:
@@ -55,7 +51,7 @@ module.exports = {
     // ...
 
     {
-      resolve: "gatsby-source-bigcommerce-v2",
+      resolve: "@stackmarketlabs/gatsby-source-bigcommerce",
       options: {
         auth: {
           client_id: process.env.BIGCOMMERCE_API_CLIENT_ID // The client ID of your BigCommerce store.,
