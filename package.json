@@ -1,5 +1,5 @@
 {
-	"name": "@stackmarketlabs/gatsby-source-bigcommerce-v2",
+	"name": "@stackmarketlabs/gatsby-source-bigcommerce",
 	"version": "1.0.0",
 	"description": "This unofficial source plugin makes BigCommerce API data available in GatsbyJS sites. Currently in active development.",
 	"scripts": {
