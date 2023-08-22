@@ -25,7 +25,8 @@
 		"storefront",
 		"bigcommerce",
 		"gatsby-plugin",
-		"gatsby-source-bigcommerce-v2",
+		"stackmarketlabs",
+		"gatsby-source-bigcommerce",
 		"gatsby",
 		"plugin",
 		"source"
