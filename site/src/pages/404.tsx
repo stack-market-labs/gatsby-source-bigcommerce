@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Link, HeadFC } from "gatsby"
+import * as React from "react";
+import { Link, HeadFC } from "gatsby";
 
 export default function NotFoundPage(): React.ReactElement {
   return (
@@ -8,7 +8,7 @@ export default function NotFoundPage(): React.ReactElement {
       <br />
       <Link to="/">Go home</Link>.
     </main>
-  )
+  );
 }
 
-export const Head: HeadFC = () => <title>404 - Page Not Found</title>
+export const Head: HeadFC = () => <title>404 - Page Not Found</title>;

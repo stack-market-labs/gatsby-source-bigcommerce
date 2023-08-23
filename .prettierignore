@@ -4,6 +4,7 @@ public
 .cache
 *.log
 gatsby-types.d.ts
+dist
 
 .pnp.*
 .yarn/*
@@ -12,5 +13,3 @@ gatsby-types.d.ts
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-.DS_STORE

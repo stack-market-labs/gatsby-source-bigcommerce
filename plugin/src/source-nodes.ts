@@ -1,19 +1,28 @@
-import type { GatsbyNode, SourceNodesArgs, NodeInput } from "gatsby"
-import type { IRemoteImageNodeInput } from "gatsby-plugin-utils"
-import type { IAuthorInput, IPostInput, IPluginOptionsInternal, IPostImageInput, NodeBuilderInput } from "./types"
-import { CACHE_KEYS, ERROR_CODES, NODE_TYPES } from "./constants"
-import { fetchGraphQL } from "./utils"
+import type { GatsbyNode, SourceNodesArgs, NodeInput } from "gatsby";
+import type { IRemoteImageNodeInput } from "gatsby-plugin-utils";
+import type {
+  IAuthorInput,
+  IPostInput,
+  IPluginOptionsInternal,
+  IPostImageInput,
+  NodeBuilderInput
+} from "./types";
+import { CACHE_KEYS, ERROR_CODES, NODE_TYPES } from "./constants";
+import { fetchGraphQL } from "./utils";
 
-let isFirstSource = true
+let isFirstSource = true;
 
 /**
  * The sourceNodes API is the heart of a Gatsby source plugin. This is where data is ingested and transformed into Gatsby's data layer.
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#sourceNodes
  */
-export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOptions: IPluginOptionsInternal) => {
-  const { actions, reporter, cache, getNodes } = gatsbyApi
-  const { touchNode } = actions
-  const { endpoint } = pluginOptions
+export const sourceNodes: GatsbyNode[`sourceNodes`] = async (
+  gatsbyApi,
+  pluginOptions: IPluginOptionsInternal
+) => {
+  const { actions, reporter, cache, getNodes } = gatsbyApi;
+  const { touchNode } = actions;
+  const { endpoint } = pluginOptions;
 
   /**
    * It's good practice to give your users some feedback on progress and status. Instead of printing individual lines, use the activityTimer API.
@@ -21,8 +30,8 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
    * In the end your users will also have the exact time it took to source the data.
    * @see https://www.gatsbyjs.com/docs/reference/config-files/node-api-helpers/#reporter
    */
-  const sourcingTimer = reporter.activityTimer(`Sourcing from plugin API`)
-  sourcingTimer.start()
+  const sourcingTimer = reporter.activityTimer(`Sourcing from plugin API`);
+  sourcingTimer.start();
 
   if (isFirstSource) {
     /**
@@ -33,7 +42,7 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
        * "owner" is the name of your plugin, the "name" you defined in the package.json
        */
       if (node.internal.owner !== `plugin`) {
-        return
+        return;
       }
 
       /**
@@ -43,10 +52,10 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
        * However, Gatsby only checks if a node has been touched on the first sourcing. This is what the "isFirstSource" variable is for.
        * @see https://www.gatsbyjs.com/docs/reference/config-files/actions/#touchNode
        */
-      touchNode(node)
-    })
+      touchNode(node);
+    });
 
-    isFirstSource = false
+    isFirstSource = false;
   }
 
   /**
@@ -56,8 +65,8 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
    * You should also use it to persist results of time/memory/cpu intensive tasks.
    * @see https://www.gatsbyjs.com/docs/reference/config-files/node-api-helpers/#cache
    */
-  const lastFetchedDate: number = await cache.get(CACHE_KEYS.Timestamp)
-  const lastFetchedDateCurrent = Date.now()
+  const lastFetchedDate: number = await cache.get(CACHE_KEYS.Timestamp);
+  const lastFetchedDateCurrent = Date.now();
 
   /**
    * The reporter API has a couple of methods:
@@ -72,17 +81,17 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
    * Try to keep the terminal information concise and informative. You can use the "verbose" method to print more detailed information.
    * You don't need to print out every bit of detail your plugin is doing as otherwise it'll flood the user's terminal.
    */
-  reporter.verbose(`[plugin] Last fetched date: ${lastFetchedDate}`)
+  reporter.verbose(`[plugin] Last fetched date: ${lastFetchedDate}`);
 
   interface IApiResponse {
     data: {
-      posts: Array<IPostInput>
-      authors: Array<IAuthorInput>
-    }
+      posts: Array<IPostInput>;
+      authors: Array<IAuthorInput>;
+    };
     errors?: Array<{
-      message: string
-      locations: Array<unknown>
-    }>
+      message: string;
+      locations: Array<unknown>;
+    }>;
   }
 
   /**
@@ -111,18 +120,18 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
         }
       }
     `
-  )
+  );
 
   if (errors) {
     sourcingTimer.panicOnBuild({
       id: ERROR_CODES.GraphQLSourcing,
       context: {
         sourceMessage: `Sourcing from the GraphQL API failed`,
-        graphqlError: errors[0].message,
-      },
-    })
-    
-    return
+        graphqlError: errors[0].message
+      }
+    });
+
+    return;
   }
 
   /**
@@ -133,47 +142,52 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (gatsbyApi, pluginOp
    * For example, passing a Set or Map won't work because the "structuredClone" option is purposefully not enabled:
    * https://github.com/kriszyp/lmdb-js#serialization-options
    */
-  await cache.set(CACHE_KEYS.Timestamp, lastFetchedDateCurrent)
+  await cache.set(CACHE_KEYS.Timestamp, lastFetchedDateCurrent);
 
-  const { posts = [], authors = [] } = data
+  const { posts = [], authors = [] } = data;
 
   /**
    * Up until now the terminal output only showed "Sourcing from plugin API" and a timer. Via the "setStatus" method you can add more information to the output.
    * It'll then print "Sourcing from plugin API - Processing X posts and X authors"
    */
-  sourcingTimer.setStatus(`Processing ${posts.length} posts and ${authors.length} authors`)
+  sourcingTimer.setStatus(
+    `Processing ${posts.length} posts and ${authors.length} authors`
+  );
 
   /**
    * Iterate over the data and create nodes
    */
   for (const post of posts) {
-    nodeBuilder({ gatsbyApi, input: { type: NODE_TYPES.Post, data: post } })
+    nodeBuilder({ gatsbyApi, input: { type: NODE_TYPES.Post, data: post } });
   }
 
   for (const author of authors) {
-    nodeBuilder({ gatsbyApi, input: { type: NODE_TYPES.Author, data: author } })
+    nodeBuilder({
+      gatsbyApi,
+      input: { type: NODE_TYPES.Author, data: author }
+    });
   }
 
-  sourcingTimer.end()
-}
+  sourcingTimer.end();
+};
 
 interface INodeBuilderArgs {
-  gatsbyApi: SourceNodesArgs
+  gatsbyApi: SourceNodesArgs;
   // This uses the "Discriminated Unions" pattern
   // https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#discriminated-unions
-  input: NodeBuilderInput
+  input: NodeBuilderInput;
 }
 
 export function nodeBuilder({ gatsbyApi, input }: INodeBuilderArgs) {
-  const id = gatsbyApi.createNodeId(`${input.type}-${input.data.id}`)
+  const id = gatsbyApi.createNodeId(`${input.type}-${input.data.id}`);
 
-  const extraData: Record<string, unknown> = {}
+  const extraData: Record<string, unknown> = {};
 
   if (input.type === `Post`) {
-    const assetId = createAssetNode(gatsbyApi, input.data.image)
+    const assetId = createAssetNode(gatsbyApi, input.data.image);
 
     // This sets the autogenerated Node ID onto the "image" key of the Post node. Then the @link directive in the schema will work.
-    extraData.image = assetId
+    extraData.image = assetId;
   }
 
   const node = {
@@ -194,19 +208,22 @@ export function nodeBuilder({ gatsbyApi, input }: INodeBuilderArgs) {
        * The content digest is a hash of the entire node.
        * Gatsby uses this internally to determine if the node needs to be updated.
        */
-      contentDigest: gatsbyApi.createContentDigest(input.data),
-    },
-  } satisfies NodeInput
+      contentDigest: gatsbyApi.createContentDigest(input.data)
+    }
+  } satisfies NodeInput;
 
   /**
    * Add the node to Gatsby's data layer. This is the most important piece of a Gatsby source plugin.
    * @see https://www.gatsbyjs.com/docs/reference/config-files/actions/#createNode
    */
-  gatsbyApi.actions.createNode(node)
+  gatsbyApi.actions.createNode(node);
 }
 
-export function createAssetNode(gatsbyApi: SourceNodesArgs, data: IPostImageInput) {
-  const id = gatsbyApi.createNodeId(`${NODE_TYPES.Asset}-${data.url}`)
+export function createAssetNode(
+  gatsbyApi: SourceNodesArgs,
+  data: IPostImageInput
+) {
+  const id = gatsbyApi.createNodeId(`${NODE_TYPES.Asset}-${data.url}`);
 
   /**
    * For Image CDN and the "RemoteFile" interface, these fields are required:
@@ -238,14 +255,14 @@ export function createAssetNode(gatsbyApi: SourceNodesArgs, data: IPostImageInpu
     children: [],
     internal: {
       type: NODE_TYPES.Asset,
-      contentDigest: gatsbyApi.createContentDigest(data),
-    },
-  } satisfies IRemoteImageNodeInput
+      contentDigest: gatsbyApi.createContentDigest(data)
+    }
+  } satisfies IRemoteImageNodeInput;
 
-  gatsbyApi.actions.createNode(assetNode)
+  gatsbyApi.actions.createNode(assetNode);
 
   /**
    * Return the id so it can be used for the foreign key relationship on the Post node.
    */
-  return id
+  return id;
 }

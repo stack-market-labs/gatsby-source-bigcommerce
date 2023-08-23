@@ -1,5 +1,5 @@
-import type { GatsbyNode } from "gatsby"
-import { ERROR_CODES } from "./constants"
+import type { GatsbyNode } from "gatsby";
+import { ERROR_CODES } from "./constants";
 
 /**
  * Use the onPluginInit API to set up things that should be run before the plugin is initialized.
@@ -14,7 +14,7 @@ export const onPluginInit: GatsbyNode[`onPluginInit`] = ({ reporter }) => {
     [ERROR_CODES.GraphQLSourcing]: {
       text: (context) => `${context.sourceMessage}: ${context.graphqlError}`,
       level: `ERROR`,
-      category: `THIRD_PARTY`,
-    },
-  })
-}
+      category: `THIRD_PARTY`
+    }
+  });
+};

@@ -1,20 +1,20 @@
-import { createAssetNode, nodeBuilder } from "../source-nodes"
-import { authorFixture, postFixture, postImageFixture } from "./fixtures"
+import { createAssetNode, nodeBuilder } from "../source-nodes";
+import { authorFixture, postFixture, postImageFixture } from "./fixtures";
 
-const nodeIdPlaceholder = `unique-id`
-const contentDigestPlaceholder = `unique-content-digest`
+const nodeIdPlaceholder = `unique-id`;
+const contentDigestPlaceholder = `unique-content-digest`;
 
-let gatsbyApi
+let gatsbyApi;
 
 describe(`sourceNodes`, () => {
   beforeEach(() => {
     gatsbyApi = {
       cache: {
         set: jest.fn(),
-        get: jest.fn(),
+        get: jest.fn()
       },
       actions: {
-        createNode: jest.fn(),
+        createNode: jest.fn()
       },
       createContentDigest: jest.fn().mockReturnValue(contentDigestPlaceholder),
       createNodeId: jest.fn().mockReturnValue(nodeIdPlaceholder),
@@ -26,24 +26,25 @@ describe(`sourceNodes`, () => {
         activityTimer: (): Record<string, unknown> => ({
           start: jest.fn(),
           end: jest.fn(),
-          setStatus: jest.fn(),
-        }),
-      },
-    }
-  })
+          setStatus: jest.fn()
+        })
+      }
+    };
+  });
 
   afterEach(() => {
-    jest.resetAllMocks()
-  })
+    jest.resetAllMocks();
+  });
 
   describe(`nodeBuilder`, () => {
     it(`should create correct Author node`, () => {
       nodeBuilder({
         gatsbyApi,
-        input: { type: `Author`, data: authorFixture },
-      })
+        input: { type: `Author`, data: authorFixture }
+      });
 
-      expect(gatsbyApi.actions.createNode.mock.calls[0][0]).toMatchInlineSnapshot(`
+      expect(gatsbyApi.actions.createNode.mock.calls[0][0])
+        .toMatchInlineSnapshot(`
         {
           "_id": 1,
           "children": [],
@@ -55,12 +56,13 @@ describe(`sourceNodes`, () => {
           "name": "Jay Gatsby",
           "parent": null,
         }
-      `)
-    })
+      `);
+    });
     it(`should create correct Post node`, () => {
-      nodeBuilder({ gatsbyApi, input: { type: `Post`, data: postFixture } })
+      nodeBuilder({ gatsbyApi, input: { type: `Post`, data: postFixture } });
 
-      expect(gatsbyApi.actions.createNode.mock.calls[0][0]).toMatchInlineSnapshot(`
+      expect(gatsbyApi.actions.createNode.mock.calls[0][0])
+        .toMatchInlineSnapshot(`
         {
           "alt": "brown and white long coated dog",
           "children": [],
@@ -77,15 +79,16 @@ describe(`sourceNodes`, () => {
           "url": "https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg",
           "width": 3024,
         }
-      `)
-    })
-  })
+      `);
+    });
+  });
   describe(`createAssetNode`, () => {
     it(`should create correct node shape`, () => {
-      const id = createAssetNode(gatsbyApi, postImageFixture)
+      const id = createAssetNode(gatsbyApi, postImageFixture);
 
-      expect(id).toEqual(nodeIdPlaceholder)
-      expect(gatsbyApi.actions.createNode.mock.calls[0][0]).toMatchInlineSnapshot(`
+      expect(id).toEqual(nodeIdPlaceholder);
+      expect(gatsbyApi.actions.createNode.mock.calls[0][0])
+        .toMatchInlineSnapshot(`
         {
           "alt": "brown and white long coated dog",
           "children": [],
@@ -102,7 +105,7 @@ describe(`sourceNodes`, () => {
           "url": "https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg",
           "width": 3024,
         }
-      `)
-    })
-  })
-})
+      `);
+    });
+  });
+});

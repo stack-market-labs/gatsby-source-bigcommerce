@@ -1,8 +1,10 @@
-import * as React from "react"
-import { Link, graphql, PageProps, HeadFC } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import * as React from "react";
+import { Link, graphql, PageProps, HeadFC } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-export default function PostPage({ data: { post } }: PageProps<{ post: Queries.Post }>): React.ReactElement {
+export default function PostPage({
+  data: { post }
+}: PageProps<{ post: Queries.Post }>): React.ReactElement {
   return (
     <main>
       <h1>{post.title}</h1>
@@ -10,10 +12,13 @@ export default function PostPage({ data: { post } }: PageProps<{ post: Queries.P
       <br />
       <Link to="/">Back to home page</Link>
       <div className="image">
-        <GatsbyImage alt={post.image.alt} image={getImage(post.image.gatsbyImage)} />
+        <GatsbyImage
+          alt={post.image.alt}
+          image={getImage(post.image.gatsbyImage)}
+        />
       </div>
     </main>
-  )
+  );
 }
 
 export const Head: HeadFC<{ post: Queries.Post }> = ({ data: { post } }) => (
@@ -24,7 +29,7 @@ export const Head: HeadFC<{ post: Queries.Post }> = ({ data: { post } }) => (
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌈</text></svg>"
     />
   </React.Fragment>
-)
+);
 
 export const query = graphql`
   query PostPage($slug: String!) {
@@ -39,4 +44,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

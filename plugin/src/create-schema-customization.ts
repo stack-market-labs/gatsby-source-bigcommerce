@@ -1,5 +1,5 @@
-import type { GatsbyNode } from "gatsby"
-import { NODE_TYPES } from "./constants"
+import type { GatsbyNode } from "gatsby";
+import { NODE_TYPES } from "./constants";
 
 /**
  * By default Gatsby, infers the data types for each node. This can be sometimes brittle or lead to hard-to-debug errors.
@@ -13,16 +13,17 @@ import { NODE_TYPES } from "./constants"
  * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#explicitly-defining-data-types
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createSchemaCustomization
  */
-export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] = ({ actions }) => {
-  const { createTypes } = actions
+export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] =
+  ({ actions }) => {
+    const { createTypes } = actions;
 
-  /**
-   * Two things are happening here:
-   * - The `Post` and `Author` types are being explicitly defined with all their fields
-   * - The `author` field on the `Post` type is being linked to the `Author` type via a foreign-key relationship
-   * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#foreign-key-fields
-   */
-  createTypes(`
+    /**
+     * Two things are happening here:
+     * - The `Post` and `Author` types are being explicitly defined with all their fields
+     * - The `author` field on the `Post` type is being linked to the `Author` type via a foreign-key relationship
+     * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#foreign-key-fields
+     */
+    createTypes(`
     type ${NODE_TYPES.Post} implements Node {
       id: ID!
       _id: Int!
@@ -44,10 +45,10 @@ export const createSchemaCustomization: GatsbyNode[`createSchemaCustomization`] 
       width: Int!
       height: Int!
     }
-  `)
+  `);
 
-  /**
-   * You most often will use SDL syntax to define your data types. However, you can also use type builders for more advanced use cases
-   * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#gatsby-type-builders
-   */
-}
+    /**
+     * You most often will use SDL syntax to define your data types. However, you can also use type builders for more advanced use cases
+     * @see https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/#gatsby-type-builders
+     */
+  };

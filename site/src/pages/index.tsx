@@ -1,10 +1,10 @@
-import * as React from "react"
-import { Link, graphql, HeadFC, PageProps } from "gatsby"
+import * as React from "react";
+import { Link, graphql, HeadFC, PageProps } from "gatsby";
 
 export default function IndexPage({
   data: {
-    allPost: { nodes: posts },
-  },
+    allPost: { nodes: posts }
+  }
 }: PageProps<Queries.IndexPageQuery>): React.ReactElement {
   return (
     <main>
@@ -18,7 +18,7 @@ export default function IndexPage({
         ))}
       </section>
     </main>
-  )
+  );
 }
 
 export const Head: HeadFC = () => (
@@ -29,7 +29,7 @@ export const Head: HeadFC = () => (
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌈</text></svg>"
     />
   </React.Fragment>
-)
+);
 
 export const query = graphql`
   query IndexPage {
@@ -44,4 +44,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

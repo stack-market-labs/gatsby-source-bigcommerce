@@ -1,5 +1,5 @@
-import type { GatsbyNode } from "gatsby"
-import type { ObjectSchema } from "gatsby-plugin-utils"
+import type { GatsbyNode } from "gatsby";
+import type { ObjectSchema } from "gatsby-plugin-utils";
 
 /**
  * When you expose options for your plugin, it's best practice to validate the user input.
@@ -8,8 +8,13 @@ import type { ObjectSchema } from "gatsby-plugin-utils"
  * @see https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#pluginOptionsSchema
  * @see https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/configuring-usage-with-plugin-options/
  */
-export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({ Joi }): ObjectSchema => {
+export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
+  Joi
+}): ObjectSchema => {
   return Joi.object({
-    endpoint: Joi.string().uri().required().description(`The endpoint of your GraphQL API`),
-  })
-}
+    endpoint: Joi.string()
+      .uri()
+      .required()
+      .description(`The endpoint of your GraphQL API`)
+  });
+};
