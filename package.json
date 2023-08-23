@@ -9,6 +9,7 @@
     "plugin"
   ],
   "scripts": {
+    "commit": "git-cz",
     "develop:api": "yarn workspace api develop",
     "develop:plugin": "yarn workspace plugin develop",
     "develop:site": "yarn workspace site develop",
@@ -30,13 +31,46 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.3"
   },
-  "packageManager": "yarn@3.3.1"
+  "packageManager": "yarn@3.3.1",
+  "bugs": {
+    "url": "https://github.com/stack-market-labs/gatsby-source-bigcommerce/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged --allow-empty",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit": "cz",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.ts?(x)": [
+      "yarn lint:fix"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
 }
