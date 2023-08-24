@@ -21,7 +21,7 @@ import {
   convertObjectToString,
   convertStringToLowercase,
   convertStringToUppercase,
-} from "../utils/convertValues";
+} from "../utils/convert-values";
 import { debounce } from "../utils/debounce";
 import { throttle } from "../utils/throttle";
 

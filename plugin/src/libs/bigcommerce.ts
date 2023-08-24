@@ -9,7 +9,7 @@ import {
   REQUEST_TIMEOUT,
 } from "../constants";
 import { IBigCommerceConfig, IRequestProps } from "../types";
-import { convertObjectToString } from "../utils/convertValues";
+import { convertObjectToString } from "../utils/convert-values";
 import { Request } from "./request";
 
 export class BigCommerce {
