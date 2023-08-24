@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from "lodash";
-import { isEmpty } from "./typeCheck";
+import { isEmpty } from "./type-check";
 
 // Convert string to lowercase
 export const convertStringToLowercase = (e: string): string =>
@@ -28,7 +28,7 @@ export const convertStringToKebabCase = (e: string): string =>
 
 // Convert string to constant case
 export const convertStringToConstantCase = (e: string): string =>
-  !isEmpty(e) ? _.toUpper(e).replace(/ /g, `_`) : e;
+  !isEmpty(e) ? _.snakeCase(e).toUpperCase() : e;
 
 // Convert string to sentence case
 export const convertStringToSentenceCase = (e: string): string =>
