@@ -3,7 +3,7 @@ import { Link, graphql, PageProps, HeadFC } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export default function PostPage({
-  data: { post }
+  data: { post },
 }: PageProps<{ post: Queries.Post }>): React.ReactElement {
   return (
     <main>

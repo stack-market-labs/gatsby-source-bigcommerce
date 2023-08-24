@@ -12,17 +12,17 @@ export const schema = createSchema({
   resolvers: {
     Query: {
       authors: () => authors,
-      posts: () => posts
+      posts: () => posts,
     },
     Author: {
       id: (parent: IAuthor) => parent.id,
-      name: (parent: IAuthor) => parent.name
+      name: (parent: IAuthor) => parent.name,
     },
     Post: {
       id: (parent: IPost) => parent.id,
       slug: (parent: IPost) => parent.slug,
       title: (parent: IPost) => parent.title,
-      author: (parent: IPost) => parent.author
+      author: (parent: IPost) => parent.author,
     },
     Mutation: {
       createPost: (_, { slug, title }) => {
@@ -34,9 +34,9 @@ export const schema = createSchema({
             url: `https://images.unsplash.com/photo-1615751072497-5f5169febe17?fm=jpg`,
             alt: `brown and white long coated dog`,
             width: 3024,
-            height: 4032
+            height: 4032,
           },
-          author: `Jay Gatsby`
+          author: `Jay Gatsby`,
         };
         posts.push(post);
         return post;
@@ -61,9 +61,9 @@ export const schema = createSchema({
         posts.splice(postIndex, 1);
 
         return post;
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 const yoga = createYoga({ schema });

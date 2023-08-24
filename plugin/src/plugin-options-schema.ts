@@ -9,12 +9,12 @@ import type { ObjectSchema } from "gatsby-plugin-utils";
  * @see https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/configuring-usage-with-plugin-options/
  */
 export const pluginOptionsSchema: GatsbyNode["pluginOptionsSchema"] = ({
-  Joi
+  Joi,
 }): ObjectSchema => {
   return Joi.object({
     endpoint: Joi.string()
       .uri()
       .required()
-      .description(`The endpoint of your GraphQL API`)
+      .description(`The endpoint of your GraphQL API`),
   });
 };

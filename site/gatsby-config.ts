@@ -15,13 +15,13 @@ const config: GatsbyConfig = {
       resolve: `plugin`,
       // You can pass any serializable options to the plugin
       options: {
-        endpoint: GRAPHQL_ENDPOINT
-      } satisfies IPluginOptions
+        endpoint: GRAPHQL_ENDPOINT,
+      } satisfies IPluginOptions,
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`
-  ]
+    `gatsby-transformer-sharp`,
+  ],
 };
 
 export default config;

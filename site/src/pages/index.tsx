@@ -3,8 +3,8 @@ import { Link, graphql, HeadFC, PageProps } from "gatsby";
 
 export default function IndexPage({
   data: {
-    allPost: { nodes: posts }
-  }
+    allPost: { nodes: posts },
+  },
 }: PageProps<Queries.IndexPageQuery>): React.ReactElement {
   return (
     <main>

@@ -4,7 +4,7 @@ import { pluginOptionsSchema } from "../plugin-options-schema";
 describe(`pluginOptionsSchema`, () => {
   it(`should invalidate incorrect options`, async () => {
     const options = {
-      endpoint: undefined
+      endpoint: undefined,
     };
 
     const { isValid, errors } = await testPluginOptionsSchema(
@@ -17,7 +17,7 @@ describe(`pluginOptionsSchema`, () => {
   });
   it(`should invalidate incorrect endpoint string`, async () => {
     const options = {
-      endpoint: `foo`
+      endpoint: `foo`,
     };
 
     const { isValid, errors } = await testPluginOptionsSchema(
@@ -30,7 +30,7 @@ describe(`pluginOptionsSchema`, () => {
   });
   it(`should validate correct options`, async () => {
     const options = {
-      endpoint: `http://localhost:4000/graphql`
+      endpoint: `http://localhost:4000/graphql`,
     };
 
     const { isValid, errors } = await testPluginOptionsSchema(

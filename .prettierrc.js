@@ -4,5 +4,5 @@ module.exports = {
   quoteProps: "consistent",
   proseWrap: "preserve",
   arrowParens: "always",
-  bracketSpacing: true
+  bracketSpacing: true,
 };

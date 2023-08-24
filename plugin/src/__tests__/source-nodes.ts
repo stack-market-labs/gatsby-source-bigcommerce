@@ -11,10 +11,10 @@ describe(`sourceNodes`, () => {
     gatsbyApi = {
       cache: {
         set: jest.fn(),
-        get: jest.fn()
+        get: jest.fn(),
       },
       actions: {
-        createNode: jest.fn()
+        createNode: jest.fn(),
       },
       createContentDigest: jest.fn().mockReturnValue(contentDigestPlaceholder),
       createNodeId: jest.fn().mockReturnValue(nodeIdPlaceholder),
@@ -26,9 +26,9 @@ describe(`sourceNodes`, () => {
         activityTimer: (): Record<string, unknown> => ({
           start: jest.fn(),
           end: jest.fn(),
-          setStatus: jest.fn()
-        })
-      }
+          setStatus: jest.fn(),
+        }),
+      },
     };
   });
 
@@ -40,7 +40,7 @@ describe(`sourceNodes`, () => {
     it(`should create correct Author node`, () => {
       nodeBuilder({
         gatsbyApi,
-        input: { type: `Author`, data: authorFixture }
+        input: { type: `Author`, data: authorFixture },
       });
 
       expect(gatsbyApi.actions.createNode.mock.calls[0][0])

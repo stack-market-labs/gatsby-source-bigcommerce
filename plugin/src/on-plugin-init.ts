@@ -14,7 +14,7 @@ export const onPluginInit: GatsbyNode[`onPluginInit`] = ({ reporter }) => {
     [ERROR_CODES.GraphQLSourcing]: {
       text: (context) => `${context.sourceMessage}: ${context.graphqlError}`,
       level: `ERROR`,
-      category: `THIRD_PARTY`
-    }
+      category: `THIRD_PARTY`,
+    },
   });
 };

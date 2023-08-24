@@ -1,7 +1,7 @@
 import fetch, { HeadersInit } from "node-fetch";
 
 const headers = {
-  "Content-Type": `application/json`
+  "Content-Type": `application/json`,
 } satisfies HeadersInit;
 
 /**
@@ -17,8 +17,8 @@ export async function fetchGraphQL<T>(
     method: `POST`,
     headers,
     body: JSON.stringify({
-      query
-    })
+      query,
+    }),
   });
 
   return await response.json();

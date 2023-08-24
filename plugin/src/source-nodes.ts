@@ -5,7 +5,7 @@ import type {
   IPostInput,
   IPluginOptionsInternal,
   IPostImageInput,
-  NodeBuilderInput
+  NodeBuilderInput,
 } from "./types";
 import { CACHE_KEYS, ERROR_CODES, NODE_TYPES } from "./constants";
 import { fetchGraphQL } from "./utils";
@@ -127,8 +127,8 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (
       id: ERROR_CODES.GraphQLSourcing,
       context: {
         sourceMessage: `Sourcing from the GraphQL API failed`,
-        graphqlError: errors[0].message
-      }
+        graphqlError: errors[0].message,
+      },
     });
 
     return;
@@ -164,7 +164,7 @@ export const sourceNodes: GatsbyNode[`sourceNodes`] = async (
   for (const author of authors) {
     nodeBuilder({
       gatsbyApi,
-      input: { type: NODE_TYPES.Author, data: author }
+      input: { type: NODE_TYPES.Author, data: author },
     });
   }
 
@@ -208,8 +208,8 @@ export function nodeBuilder({ gatsbyApi, input }: INodeBuilderArgs) {
        * The content digest is a hash of the entire node.
        * Gatsby uses this internally to determine if the node needs to be updated.
        */
-      contentDigest: gatsbyApi.createContentDigest(input.data)
-    }
+      contentDigest: gatsbyApi.createContentDigest(input.data),
+    },
   } satisfies NodeInput;
 
   /**
@@ -255,8 +255,8 @@ export function createAssetNode(
     children: [],
     internal: {
       type: NODE_TYPES.Asset,
-      contentDigest: gatsbyApi.createContentDigest(data)
-    }
+      contentDigest: gatsbyApi.createContentDigest(data),
+    },
   } satisfies IRemoteImageNodeInput;
 
   gatsbyApi.actions.createNode(assetNode);
