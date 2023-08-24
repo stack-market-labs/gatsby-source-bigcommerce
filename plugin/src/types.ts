@@ -1,8 +1,57 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type {
   PluginOptions as GatsbyDefaultPluginOptions,
-  IPluginRefOptions
+  IPluginRefOptions,
 } from "gatsby";
-import { NODE_TYPES } from "./constants";
+import {
+  AUTH_HEADERS,
+  NODE_TYPES,
+  REQUEST_CONCURRENCY,
+  REQUEST_DEBOUNCE_INTERVAL,
+  REQUEST_MAX_COUNT,
+  REQUEST_PENDING_COUNT,
+  REQUEST_THROTTLE_INTERVAL,
+  REQUEST_TIMEOUT,
+} from "./constants";
+
+export interface IBigCommerceConfig {
+  clientId: string;
+  secret: string;
+  storeHash: string;
+  responseType?: string;
+  headers?: Record<string, string>;
+  requestTimeout?: number;
+  requestThrottleInterval?: number;
+  requestDebounceInterval?: number;
+  requestConcurrency?: number;
+  requestMaxCount?: number;
+  reporter: any;
+}
+
+export interface IRequestProps {
+  url: string;
+  method?: string;
+  body?: never;
+  headers?: Record<string, string>;
+}
+
+export interface IRequestOptions {
+  headers?: typeof AUTH_HEADERS | Record<string, string>;
+  requestTimeout?: typeof REQUEST_TIMEOUT | number;
+  requestThrottleInterval?: typeof REQUEST_THROTTLE_INTERVAL | number;
+  requestDebounceInterval?: typeof REQUEST_DEBOUNCE_INTERVAL | number;
+  requestMaxCount?: typeof REQUEST_MAX_COUNT | number;
+  requestConcurrency?: typeof REQUEST_CONCURRENCY | number;
+  pendingRequests?: typeof REQUEST_PENDING_COUNT | number;
+}
+
+export interface IRequestRunParams {
+  url?: string;
+  method?: string;
+  body?: never | null;
+  headers?: Record<string, string>;
+  reporter: any;
+}
 
 export interface IAuthorInput {
   id: number;
