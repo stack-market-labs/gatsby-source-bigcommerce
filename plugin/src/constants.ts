@@ -31,7 +31,7 @@ export const REQUEST_THROTTLE_INTERVAL = 500;
 export const REQUEST_DEBOUNCE_INTERVAL = 500;
 export const REQUEST_CONCURRENCY = 100;
 export const REQUEST_PENDING_COUNT = 0;
-export const REQUEST_RESPONSE_TYPE = "json";
+export const REQUEST_MAX_COUNT = 0;
 
 // Headers
 export const ACCESS_CONTROL_ALLOW_HEADERS = "Content-Type,Accept";
