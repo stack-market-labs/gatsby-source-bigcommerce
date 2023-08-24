@@ -1,6 +1,5 @@
 {
-  "private": true,
-  "name": "creating-source-plugin-tutorial",
+  "name": "@stackmarketlabs/gatsby-source-bigcommerce",
   "version": "0.1.0",
   "description": "Companion project for the Creating a Source Plugin Gatsby tutorial",
   "workspaces": [

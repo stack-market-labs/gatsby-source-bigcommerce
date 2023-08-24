@@ -3399,24 +3399,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stackmarketlabs/gatsby-source-bigcommerce@workspace:plugin":
+"@stackmarketlabs/gatsby-source-bigcommerce@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@stackmarketlabs/gatsby-source-bigcommerce@workspace:plugin"
+  resolution: "@stackmarketlabs/gatsby-source-bigcommerce@workspace:."
   dependencies:
-    "@types/lodash": ^4.14.197
-    axios: ^1.4.0
-    del-cli: ^5.0.0
-    gatsby: ^5.11.0
-    gatsby-plugin-utils: ^4.11.0
-    gatsby-source-filesystem: ^5.11.0
-    jest: ^29.6.3
-    lodash: ^4.17.21
-    ts-jest: ^29.1.1
-  peerDependencies:
-    gatsby: ^5.0.0
-    gatsby-plugin-sharp: ^4.0.0
-    gatsby-source-filesystem: ^4.0.0
-    sharp: ^0.29.1
+    "@commitlint/cli": ^17.7.1
+    "@commitlint/config-conventional": ^17.7.0
+    "@types/jest": ^29.5.4
+    "@types/node": ^20.5.4
+    "@types/react": ^18.2.21
+    "@typescript-eslint/eslint-plugin": ^5.62.0
+    "@typescript-eslint/parser": ^5.62.0
+    commitizen: ^4.3.0
+    cross-env: ^7.0.3
+    cz-conventional-changelog: ^3.3.0
+    eslint: ^8.47.0
+    eslint-config-prettier: ^8.10.0
+    eslint-plugin-prettier: ^4.2.1
+    husky: ^8.0.3
+    lint-staged: ^14.0.1
+    npm-run-all: ^4.1.5
+    prettier: ^2.8.8
+    typescript: ^5.1.6
   languageName: unknown
   linkType: soft
 
@@ -6386,31 +6390,6 @@ __metadata:
   checksum: a9a1503d4390d8b59ad86f4607de7870b39cad43d929813599a23714831e81c520bddf61bcdd1f8e30f05fd3a2b71ae8538e946eb2786dc65c2bbc520f692eff
   languageName: node
   linkType: hard
-
-"creating-source-plugin-tutorial@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "creating-source-plugin-tutorial@workspace:."
-  dependencies:
-    "@commitlint/cli": ^17.7.1
-    "@commitlint/config-conventional": ^17.7.0
-    "@types/jest": ^29.5.4
-    "@types/node": ^20.5.4
-    "@types/react": ^18.2.21
-    "@typescript-eslint/eslint-plugin": ^5.62.0
-    "@typescript-eslint/parser": ^5.62.0
-    commitizen: ^4.3.0
-    cross-env: ^7.0.3
-    cz-conventional-changelog: ^3.3.0
-    eslint: ^8.47.0
-    eslint-config-prettier: ^8.10.0
-    eslint-plugin-prettier: ^4.2.1
-    husky: ^8.0.3
-    lint-staged: ^14.0.1
-    npm-run-all: ^4.1.5
-    prettier: ^2.8.8
-    typescript: ^5.1.6
-  languageName: unknown
-  linkType: soft
 
 "cross-env@npm:^7.0.3":
   version: 7.0.3
@@ -13540,6 +13519,27 @@ __metadata:
   checksum: 6f472a09c61d418c7e26c1c16d0bdc029549d512dbec6526216a1e59ec68100d07007d0097dcba69dddad883d6f2a83361b4bdfe0094a3d9a2af24158643d85e
   languageName: node
   linkType: hard
+
+"plugin@workspace:plugin":
+  version: 0.0.0-use.local
+  resolution: "plugin@workspace:plugin"
+  dependencies:
+    "@types/lodash": ^4.14.197
+    axios: ^1.4.0
+    del-cli: ^5.0.0
+    gatsby: ^5.11.0
+    gatsby-plugin-utils: ^4.11.0
+    gatsby-source-filesystem: ^5.11.0
+    jest: ^29.6.3
+    lodash: ^4.17.21
+    ts-jest: ^29.1.1
+  peerDependencies:
+    gatsby: ^5.0.0
+    gatsby-plugin-sharp: ^4.0.0
+    gatsby-source-filesystem: ^4.0.0
+    sharp: ^0.29.1
+  languageName: unknown
+  linkType: soft
 
 "postcss-calc@npm:^8.2.3":
   version: 8.2.4
