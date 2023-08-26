@@ -1,5 +1,11 @@
 {
-  "exclude": ["node_modules", "dist", "public", ".cache", "__tests__"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public",
+    ".cache",
+    "__tests__"
+  ],
   "compilerOptions": {
     "target": "ES6",
     "moduleResolution": "node",
@@ -15,8 +21,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "lib": ["es2016", "dom"],
+    "lib": [
+      "es2016",
+      "dom"
+    ],
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   }
 }

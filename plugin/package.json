@@ -52,10 +52,11 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.4",
     "@types/lodash": "^4.14.197",
     "del-cli": "^5.0.0",
-    "gatsby": "^5.11.0",
-    "gatsby-plugin-utils": "^4.11.0",
+    "gatsby": "next",
+    "gatsby-plugin-utils": "next",
     "jest": "^29.6.3",
     "ts-jest": "^29.1.1"
   },

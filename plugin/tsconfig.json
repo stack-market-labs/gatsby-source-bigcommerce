@@ -1,9 +1,15 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["./src/**/*"],
+  "include": [
+    "./src/**/*"
+  ],
   "compilerOptions": {
     "module": "CommonJS",
     "outDir": "./dist",
-    "declaration": true
+    "declaration": true,
+    "types": [
+      "jest",
+      "node"
+    ]
   }
 }
