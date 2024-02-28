@@ -62,7 +62,7 @@
 		"@babel/plugin-transform-runtime": "^7.19.6",
 		"@babel/runtime": "^7.20.13",
 		"@commitlint/cli": "^18.4.2",
-		"@commitlint/config-conventional": "^18.4.2",
+		"@commitlint/config-conventional": "^19.0.3",
 		"babel-preset-gatsby-package": "^3.5.0",
 		"babel-preset-minify": "^0.5.2",
 		"commitizen": "^4.3.0",
